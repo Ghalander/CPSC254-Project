@@ -1,0 +1,21 @@
+links:
+http://blog.teamtreehouse.com/install-node-js-npm-windows
+https://nodejs.org/en/download/
+https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/     (number 8)
+https://confluence.atlassian.com/bitbucket/clone-a-repository-223217891.html
+https://www.atlassian.com/git/tutorials/syncing
+
+So you want to clone the repo to your local machine and create your origin and master remote points.
+Then these will be the steps you'll on a normal bases.
+
+1) git fetch origin master (this will take whatever was done from bitbucket repo and store it locally)
+2) ** do code and stuffs **
+3) git add . (makes it so all the files you've worked on will be ready for committing)
+4) git commit -m "nice message" (replace nice message with whatever meaningful thing you did when you worked on the new files so that others know what was done)
+5) git push origin master (this will push it to the remote bitbucket server)
+
+This is all without doing checkouts and making a pull request.
+https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-branch
+
+Checkouts allow us to create different branches that we can work on so we don't change the "working" files.
+A pull request will let us put the two branches (main and whatevs-branch) together and see if things don't break

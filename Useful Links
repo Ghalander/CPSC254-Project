@@ -4,6 +4,8 @@ https://nodejs.org/en/download/
 https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line/     (number 8)
 https://confluence.atlassian.com/bitbucket/clone-a-repository-223217891.html
 https://www.atlassian.com/git/tutorials/syncing
+https://getbootstrap.com/
+
 
 So you want to clone the repo to your local machine and create your origin and master remote points.
 Then these will be the steps you'll on a normal bases.

@@ -21,3 +21,10 @@ https://stackoverflow.com/questions/1783405/how-do-i-check-out-a-remote-git-bran
 
 Checkouts allow us to create different branches that we can work on so we don't change the "working" files.
 A pull request will let us put the two branches (main and whatevs-branch) together and see if things don't break
+
+
+### Design links to think about
+https://webdesign.tutsplus.com/tutorials/6-beginner-safety-first-color-guidelines-for-the-web--cms-21462
+https://designsystem.digital.gov/components/colors/
+http://digitaldesignstandards.com/standard/mobile/best-practices-designing-mobile-websites/
+https://developers.google.com/web/fundamentals/design-and-ux/principles/

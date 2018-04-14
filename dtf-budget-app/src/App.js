@@ -41,6 +41,7 @@ class App extends Component {
           <h1 className="cover-heading"> Take a sip.</h1>
           <p className="lead">Our site will allow you to get the most alcohol out of your budget</p>
           <p className="lead">Enter your budget and we&apos;ll do our best</p>
+          <p className="lead">By Hector and Hannah </p>
             <form onSubmit={this.handleSubmit}>
             <label className="lead">Budget&nbsp;
             <input name="budget" type="text" value={this.state.budget} onChange={this.handleChange} />

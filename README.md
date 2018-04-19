@@ -5,7 +5,21 @@ When you're done, you can delete the content in this README and update the file 
 *We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
 
 ---
+## Dependencies you may need to install to run everything
+  - nodejs
+  - sqlite3
+## To start client
+```
+  cd dtf-budget-app
+  npm start (or 'yarn start' works too)
+```
 
+## To start server
+```
+  cd dtf-budget-app
+  node server.js
+```
+---
 ## Edit a file
 
 You’ll start by editing this README file to learn how to edit a file in Bitbucket.

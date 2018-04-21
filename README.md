@@ -8,6 +8,9 @@ When you're done, you can delete the content in this README and update the file 
 ## Dependencies you may need to install to run everything
   - nodejs
   - sqlite3
+  I would google how to install sqlite3 on your computer since it's windows.
+  Since you already have node maybe it's just `node install sqlite3`, I'm not sure though.
+
 ## To start client
 ```
   cd dtf-budget-app
@@ -15,10 +18,56 @@ When you're done, you can delete the content in this README and update the file 
 ```
 
 ## To start server
+Open another instance of terminal/command prompt (you my be able to press ctrl-t for a new tab)
 ```
   cd dtf-budget-app
   node server.js
 ```
+
+## How to add data to the server
+  `cd dtf-budget-app`
+
+  You should see a file called `bootlegger.db`
+  Once you've installed `sqlite3` open the database by typing
+  `sqlite3 bootlegger.db`
+  Then you can see a list of tables I've made for testing by typing `.tables`
+  From here you can types
+
+  `SELECT * from <whatevTables>;`
+
+  Replace `<whatevTables>` with the table you want to see. And it will return everything in that table.
+
+  For a great resource check out [sqlite documentation](https://www.sqlite.org/lang.html)
+
+  Here's a mini How To guide:
+  Create a new table:
+  `CREATE TABLE testHannah(pk INTEGER PRIMARY KEY ASC, price INTEGER, name, VARCHAR(35), type VARCHAR(15), bar VARCHAR(100));`
+  This creates a table that has 4 columns, a primary key (start it at 1), a price for the drink as an integer, name of the drink with a 35 character limit, name of the bar with a 100 character limit.
+
+  Insert data into the table;
+  I haven't really found an fast way to do this so we will be code monkeys for a bit when we actually put in real data.
+  `INSERT INTO testHannah(pk, price, name, type, bar) VALUES (1, 7, Angry Orchard Rose, Cider, The Rusty Pupper)`
+  You will need to add the table name and the columns, then the values as the table corresponds. Just do that a few times while increasing the `pk` value by one each time.
+
+## How to get your new data to appear
+  `cd dtf-budget-app`
+  open `server.js` in your favorite text editor
+  You should see a line that has `const TABLE = 'testFINAL';`
+  Replace `testFINAL` with `testHannah` and it should work.
+
+  Note:
+  Every time you change something in `server.js` you will need to restart the server. So hit ctrl-c then `node server.js`.
+
+## As for what the database should be down the line...
+  I don't know how deep we should get into it. I don't know if we have time for photo of the drinks either.
+  
+  - One table will have (pk, price, name (of drink), type (of drink), barID)
+    which will hold the price and name of the drink then the respective bar it came from in ID form.
+  - One table will have (pk, barID, barName, barPhoto)
+    Then the bar name and photo so we don't have to keep typing long names.
+
+    Then we will just join them together by barID and it should cut down good time.
+
 ---
 ## Edit a file
 

@@ -90,8 +90,26 @@ class App extends Component {
       cargo.push(<li key={i}>{this.state.response[i].price + " " + this.state.response[i].name + " " + this.state.response[i].bar}</li>);
     }
     var cargoTypes = [];
-    for(var j=0; j < this.state.types.length; j++){
-      cargoTypes.push(<li key={j}>{this.state.types[j].price + " " + this.state.types[j].name + " " + this.state.types[j].bar}</li>);
+    {/*This will push all the types into cards, at some point I will change it to do only three at a time*/}
+    if ( this.state.types !== ' '){
+      for(var j=0; j < this.state.types.length; j++){
+        {/*All it does is list all the items for testing
+          cargoTypes.push(<li key={j}>{this.state.types[j].price + " " + this.state.types[j].name + " " + this.state.types[j].bar}</li>);
+          */}
+          cargoTypes.push(
+          <div className="col-md-4">
+            <div className="card" styles={{width: '4 em;'}}>
+              <img className="card-img-top" src="..." alt="Card image cap"></img>
+              <div className="card-body">
+                <h5 className="card-title">{this.state.types[j].name}</h5>
+                <p className="card-text">{this.state.types[j].price}</p>
+                <p className="card-text">Located in {this.state.types[j].bar}</p>
+                <a href="#" className="btn btn-primary">Go somewhere</a>
+              </div>
+              </div>
+          </div>
+          );
+      }
     }
     return (
       <div className="text-center">
@@ -132,11 +150,11 @@ class App extends Component {
                 {cargo}
               </ul>
             </div>
-            <div>
-              <ul>
+            <div className="row">
+              <div className="col-md-12">
                 {this.state.jumboBudget}
+              </div>
                 {cargoTypes}
-              </ul>
             </div>
         </main>
       </div>

@@ -1,0 +1,9 @@
+img {
+  width: 200px;
+  height: 300px;
+}
+
+.jumbotron {
+    background-color: inherit;
+    background: url('') center center fixed;
+}

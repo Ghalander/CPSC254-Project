@@ -11,10 +11,13 @@ class App extends Component {
     this.state = {
       budget: ' ',
       jumboBudget: ' ',
+      draftFlag: false,
       name: ' ',
+      selectTypes: 'any',
       response: ' ',
       types: ' ',
-      selectTypes: 'any'
+      cardTracker: 0,
+      cardDraft: ' ',
     };
 
     //must include for callbacks
@@ -28,34 +31,14 @@ class App extends Component {
       .then(res => this.setState({ response: res.express.map((item)=>({
           price: item.price,
           name: item.name,
-          bar: item.bar
+          type: item.type,
+          bar: item.bar,
+          media: item.media
         }))
       }))
       .catch(err => console.log(err));
   }
 
-//API CALLS
-//=======================================
-  callApi = async () => {
-   const response = await fetch('/api/cargo');
-   const body = await response.json();
-   if (response.status !== 200) throw Error(body.message);
-   console.log(body);
-   return body;
- };
-
- typeQuery = async() => {
-   const response = await fetch('/api/type', {
-     method: "PUT",
-     headers: {'Content-Type': 'application/json'},
-     body: JSON.stringify({drinkType: this.state.selectTypes})
-   });
-   const body = await response.json();
-   if (response.status !== 200) throw Error(body.message);
-   console.log(body);
-   return body;
- };
-//========================================
 
 //any time the text box is changed our value is updated
   handleChange(event) {
@@ -71,51 +54,135 @@ class App extends Component {
 
 //when they hit the submit button it will send the info for some database search
   handleSubmit(event) {
+    event.preventDefault();
     alert('budget: ' + this.state.budget + ' name: ' + this.state.name + ' type: ' + this.state.selectTypes);
-    this.typeQuery().then(res => this.setState({ types: res.express.map((item)=>({
+    if(this.state.draftFlag === false){
+      this.typeQuery().then(res => this.setState({ types: res.express.map((item)=>({
+          price: item.price,
+          name: item.name,
+          type: item.type,
+          bar: item.bar,
+          media: item.media
+        }))
+      })).then(()=>{this.shuffleResults(this.state.types)})
+      .catch(err => console.log(err));
+    }
+    this.setState({[this.state.jumboBudget]: this.state.jumboBudget = this.state.budget});
+  }
+
+  //===============================================
+  // UPDATING DRINK BEFORE CARD EVENT ============
+  //===============================================
+  shuffleResults(event){
+    var j, x, i;
+    for (i = event.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = event[i];
+        event[i] = event[j];
+        event[j] = x;
+    }
+    this.state.types = event
+    this.setState({[this.state.types]: this.state.types = event});
+    this.drawCards();
+  }
+  //===============================================
+
+  //===============================================
+  // UPDATING DRINK AFTER CARD EVENT =============
+  //===============================================
+  drawCards(){
+    // this.state.cardTracker;
+    // this.state.cardDraft;
+    var i = 0;
+    var j = 0;
+    var draft = [];
+    for(i = this.state.cardTracker; j < 3; i++, j++){
+      if(i < this.state.types.length){
+        draft.push(this.state.types[i]);
+      }
+      else{
+        break;
+      }
+    }
+
+    this.setState({[this.state.cardTracker]: this.state.cardTracker += i});
+    this.setState({[this.state.cardDraft]: this.state.cardDraft = draft.map((item)=>({
         price: item.price,
         name: item.name,
         type: item.type,
-        bar: item.bar
+        bar: item.bar,
+        media: item.media
       }))
-    }))
-    .catch(err => console.log(err));
-    this.state.jumboBudget = this.state.budget;
-    event.preventDefault();
+    });
+    this.setState({[this.state.draftFlag]: this.state.draftFlag = true});
+}
+
+  handleTypes = (that) => {
+    this.setState({[this.state.jumboBudget]: this.state.jumboBudget -= that.price});
+    console.log(this.state.jumboBudget);
+    this.drawCards();
   }
 
+  //===============================================
+
+  //===============================================
+  // API CALLS =====================================
+  //===============================================
+    callApi = async () => {
+     const response = await fetch('/api/cargo');
+     const body = await response.json();
+     if (response.status !== 200) throw Error(body.message);
+     console.log(body);
+     return body;
+   };
+
+   typeQuery = async() => {
+     const response = await fetch('/api/type', {
+       method: "PUT",
+       headers: {'Content-Type': 'application/json'},
+       body: JSON.stringify({drinkType: this.state.selectTypes})
+     });
+     const body = await response.json();
+     if (response.status !== 200) throw Error(body.message);
+     console.log(body);
+     return body;
+   };
+  //==============================================
+
   render() {
+
     var cargo = [];
     for(var i=0; i < this.state.response.length; i++){
-      cargo.push(<li key={i}>{this.state.response[i].price + " " + this.state.response[i].name + " " + this.state.response[i].bar}</li>);
+      cargo.push(<li key={i}>{this.state.response[i].price + " " + this.state.response[i].name + " " + this.state.response[i].bar + " " + this.state.response[i].media}</li>);
     }
     var cargoTypes = [];
-    {/*This will push all the types into cards, at some point I will change it to do only three at a time*/}
-    if ( this.state.types !== ' '){
-      for(var j=0; j < this.state.types.length; j++){
-        {/*All it does is list all the items for testing
-          cargoTypes.push(<li key={j}>{this.state.types[j].price + " " + this.state.types[j].name + " " + this.state.types[j].bar}</li>);
-          */}
+    if (this.state.draftFlag === true){
+      console.log(this.state.cardDraft);
+      for(var j=0; j < 3; j++){
+        if(this.state.cardDraft[j] !== undefined){
           cargoTypes.push(
           <div className="col-md-4">
-            <div className="card" styles={{width: '4 em;'}}>
-              <img className="card-img-top" src="..." alt="Card image cap"></img>
+            <div className="card" >
+              <img className="card-img-top" src={'/media/'+this.state.cardDraft[j].media} alt={this.state.cardDraft[j].media}></img>
               <div className="card-body">
-                <h5 className="card-title">{this.state.types[j].name}</h5>
-                <p className="card-text">{this.state.types[j].price}</p>
-                <p className="card-text">Located in {this.state.types[j].bar}</p>
-                <a href="#" className="btn btn-primary">Go somewhere</a>
+                <h5 className="card-title">{this.state.cardDraft[j].name}</h5>
+                <p className="card-text">{this.state.cardDraft[j].price}</p>
+                <p className="card-text">Located in {this.state.cardDraft[j].bar}</p>
+                <button className="btn btn-primary" onClick={this.handleTypes.bind(this, this.state.cardDraft[j])}>Go somewhere</button>
               </div>
               </div>
           </div>
           );
+        }
       }
     }
+
     return (
       <div className="text-center">
         <main role="main" className="inner cover">
+        <div className="jumbotron">
           <h1 className="cover-heading"> Take a sip.</h1>
-
+          </div>
           <div className="row">
             <div className="col-md-8">
               <p className="lead">Our site will allow you to get the most alcohol out of your budget</p>
@@ -130,10 +197,6 @@ class App extends Component {
             <input name="budget" type="text" value={this.state.budget} onChange={this.handleChange} />
             </label>
             <br/>
-            {/*the input for drink type should be replaced with a SELECT (dropdown)*/}
-            {/*<label className="lead">Drink Type&nbsp;
-            <input name="name" type="text" value={this.state.name} onChange={this.handleChange} />
-            </label>*/}
             <label className="lead">Pick your drink type
             <select name="selectTypes" value={this.state.selectTypes} onChange={this.handleChange}>
               <option value="any">Any</option>
@@ -143,7 +206,7 @@ class App extends Component {
             </select>
             </label>
             <br/>
-            <input type="submit" value="Submit"/>
+            <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
             </form>
             <div>
               <ul>
@@ -155,6 +218,10 @@ class App extends Component {
                 {this.state.jumboBudget}
               </div>
                 {cargoTypes}
+            </div>
+            <div>
+            {/*at some point have this click event hide the cards */}
+              <button className="btn btn-primary" onClick={() => {this.setState({[this.state.draftFlag]: this.state.draftFlag = false})}}>Try Again</button>
             </div>
         </main>
       </div>

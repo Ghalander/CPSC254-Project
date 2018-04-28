@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
-const TABLE = 'testFINAL';
+const TABLE = 'testMerge';
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('bootlegger.db', sqlite3.OPEN_READONLY, (err) => {
@@ -39,6 +39,7 @@ app.get('/api/cargo', (req, res) =>{
     });
   });
 });
+
 app.put('/api/type', (req, res) =>{
   var type = req.body.drinkType;
   if(type === "any" ){

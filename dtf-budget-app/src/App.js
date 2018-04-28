@@ -161,7 +161,7 @@ class App extends Component {
       for(var j=0; j < 3; j++){
         if(this.state.cardDraft[j] !== undefined){
           cargoTypes.push(
-          <div className="col-md-4">
+          <div className="mx-auto col-md-3 col-1">
             <div className="card" >
               <img className="card-img-top" src={'/media/'+this.state.cardDraft[j].media} alt={this.state.cardDraft[j].media}></img>
               <div className="card-body">
@@ -180,17 +180,15 @@ class App extends Component {
     return (
       <div className="text-center">
         <main role="main" className="inner cover">
-        <div className="jumbotron">
+        <div className="jumbotron my-4">
           <h1 className="cover-heading"> Take a sip.</h1>
           </div>
           <div className="row">
-            <div className="col-md-8">
+            <div className="col-md-12 text-center">
               <p className="lead">Our site will allow you to get the most alcohol out of your budget</p>
             </div>
-            <p className="lead col-md-8">Enter your budget and we&apos;ll do our best</p>
+            <p className="mx-auto lead col-md-8">Enter your budget and we&apos;ll do our best</p>
           </div>
-
-
           <p className="lead">By Hector and Hannah </p>
             <form onSubmit={this.handleSubmit}>
             <label className="lead">Budget&nbsp;

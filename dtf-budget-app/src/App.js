@@ -1,4 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import update from 'immutability-helper';
+import CheckMaps from './CheckForMap.js';
+import Cart from './Cart.js';
+import Maps from './Map.js';
 import './App.css';
 
 class App extends Component {
@@ -18,12 +22,14 @@ class App extends Component {
       types: ' ',
       cardTracker: 0,
       cardDraft: ' ',
+      mapFlag: false,
+      cardDeck: []
     };
 
     //must include for callbacks
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
+}
   //this is called as soon as the main website has loaded everything
   componentDidMount() {
     this.callApi()
@@ -32,12 +38,32 @@ class App extends Component {
           price: item.price,
           name: item.name,
           type: item.type,
+          description: item.description,
           bar: item.bar,
-          media: item.media
+          lat: item.lat,
+          long: item.long,
         }))
       }))
       .catch(err => console.log(err));
   }
+
+  handleBudgetValue = e => this.setState({[this.state.jumboBudget]: this.state.jumboBudget = e});
+  handleMapFlag = e => this.setState({[this.state.mapFlag]: this.state.mapFlag = e});
+  handleReset = e =>{
+    this.setState({
+      [this.state.budget]: this.state.budget = ' ',
+      [this.state.jumboBudget]: this.state.jumboBudget = ' ',
+      [this.state.draftFlag]: this.state.draftFlag = false,
+      [this.state.name]: this.state.name = ' ',
+      [this.state.selectTypes]: this.state.selectTypes = 'any',
+      [this.state.response]: this.state.response = ' ',
+      [this.state.response]: this.state.types = ' ',
+      [this.state.cardTracker]: this.state.cardTracker = 0,
+      [this.state.cardDraft]: this.state.cardDraft = ' ',
+      [this.state.mapFlag]: this.state.mapFlag = false,
+    });
+  }
+
 
 
 //any time the text box is changed our value is updated
@@ -58,11 +84,12 @@ class App extends Component {
     alert('budget: ' + this.state.budget + ' name: ' + this.state.name + ' type: ' + this.state.selectTypes);
     if(this.state.draftFlag === false){
       this.typeQuery().then(res => this.setState({ types: res.express.map((item)=>({
-          price: item.price,
-          name: item.name,
-          type: item.type,
-          bar: item.bar,
-          media: item.media
+        price: item.price,
+        name: item.name,
+        type: item.type,
+        description: item.description,
+        bar: item.bar,
+        address: item.address
         }))
       })).then(()=>{this.shuffleResults(this.state.types)})
       .catch(err => console.log(err));
@@ -107,21 +134,35 @@ class App extends Component {
 
     this.setState({[this.state.cardTracker]: this.state.cardTracker += i});
     this.setState({[this.state.cardDraft]: this.state.cardDraft = draft.map((item)=>({
-        price: item.price,
-        name: item.name,
-        type: item.type,
-        bar: item.bar,
-        media: item.media
+      price: item.price,
+      name: item.name,
+      type: item.type,
+      description: item.description,
+      bar: item.bar,
+      address: item.address
       }))
     });
     this.setState({[this.state.draftFlag]: this.state.draftFlag = true});
 }
 
+//===========================================
+//  setting values to something that is asynchronous by nature
+//===============================================
+
   handleTypes = (that) => {
+    this.setState({[this.state.cardDeck]: this.state.cardDeck = update(this.state.cardDeck, {$push: [
+      that.price,
+      that.name,
+      that.type,
+      that.bar,
+      that.address
+    ]})
+  });
     this.setState({[this.state.jumboBudget]: this.state.jumboBudget -= that.price});
-    console.log(this.state.jumboBudget);
     this.drawCards();
   }
+
+
 
   //===============================================
 
@@ -132,7 +173,6 @@ class App extends Component {
      const response = await fetch('/api/cargo');
      const body = await response.json();
      if (response.status !== 200) throw Error(body.message);
-     console.log(body);
      return body;
    };
 
@@ -144,30 +184,24 @@ class App extends Component {
      });
      const body = await response.json();
      if (response.status !== 200) throw Error(body.message);
-     console.log(body);
      return body;
    };
   //==============================================
 
   render() {
-
-    var cargo = [];
-    for(var i=0; i < this.state.response.length; i++){
-      cargo.push(<li key={i}>{this.state.response[i].price + " " + this.state.response[i].name + " " + this.state.response[i].bar + " " + this.state.response[i].media}</li>);
-    }
     var cargoTypes = [];
     if (this.state.draftFlag === true){
-      console.log(this.state.cardDraft);
       for(var j=0; j < 3; j++){
         if(this.state.cardDraft[j] !== undefined){
           cargoTypes.push(
           <div className="mx-auto col-md-3 col-1">
             <div className="card" >
-              <img className="card-img-top" src={'/media/'+this.state.cardDraft[j].media} alt={this.state.cardDraft[j].media}></img>
+              {/*// <img className="card-img-top" src={'/media/'+this.state.cardDraft[j].media} alt={this.state.cardDraft[j].media}></img>*/}
               <div className="card-body">
                 <h5 className="card-title">{this.state.cardDraft[j].name}</h5>
                 <p className="card-text">{this.state.cardDraft[j].price}</p>
                 <p className="card-text">Located in {this.state.cardDraft[j].bar}</p>
+                <p className="card-text">{this.state.cardDraft[j].description}</p>
                 <button className="btn btn-primary" onClick={this.handleTypes.bind(this, this.state.cardDraft[j])}>Go somewhere</button>
               </div>
               </div>
@@ -176,7 +210,7 @@ class App extends Component {
         }
       }
     }
-
+  if(this.state.mapFlag === false){
     return (
       <div className="text-center">
         <main role="main" className="inner cover">
@@ -206,24 +240,39 @@ class App extends Component {
             <br/>
             <button className="btn btn-primary" type="submit" value="Submit">Submit</button>
             </form>
-            <div>
-              <ul>
-                {cargo}
-              </ul>
-            </div>
+
             <div className="row">
               <div className="col-md-12">
                 {this.state.jumboBudget}
               </div>
                 {cargoTypes}
             </div>
-            <div>
-            {/*at some point have this click event hide the cards */}
-              <button className="btn btn-primary" onClick={() => {this.setState({[this.state.draftFlag]: this.state.draftFlag = false})}}>Try Again</button>
-            </div>
+            <Fragment>
+              <CheckMaps budgetValue={this.state.jumboBudget} onMapFlagCallback={this.handleMapFlag} onBudgetCallback={this.handleBudgetValue}/>
+            </Fragment>
         </main>
       </div>
     );
+  }
+  else {
+    return(
+      <div>
+          <Fragment>
+            <Cart shoppingCart={this.state.cardDeck}/>
+          </Fragment>
+      <div>
+      <div className="container">
+        <Fragment>
+          <Maps listing={this.state.cardDeck}/>
+        </Fragment>
+        </div>
+      </div>
+        <div className="container">
+        <button className="btn btn-primary" onClick={() => this.handleReset()}>Handle Reset</button>
+        </div>
+      </div>
+    );
+  }
   }
 }
 

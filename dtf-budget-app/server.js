@@ -4,7 +4,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 
-const TABLE = 'testMerge';
+const TABLE = 'shipment';
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('bootlegger.db', sqlite3.OPEN_READONLY, (err) => {

@@ -8,14 +8,23 @@
 
 ### IDs for restaurants
 EFO - El Farolito Jr
+
 FLO - Florintines Grill
+
 WRK - Wreckless
+
 PUB - The Public House
+
 MAT - Matador Cantina
+
 HCF - Hidalgo Cafe
+
 SDE - The Slidebar Rock n Roll Cafe
+
 HOP - Hopscotch
+
 RUT - Rutabergorz
+
 
 ### TABLE - SCOUTER
 barID VARCHAR(4), price INTEGER, name VARCHAR(35), type VARCHAR(25), description VARCHAR(200)

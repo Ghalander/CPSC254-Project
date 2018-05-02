@@ -233,7 +233,12 @@ class App extends Component {
             <select name="selectTypes" value={this.state.selectTypes} onChange={this.handleChange}>
               <option value="any">Any</option>
               <option value="beer">Beer</option>
-              <option value="cider">Cider</option>
+              <option value="gin">Gin</option>
+              <option value="margarita">Margarita</option>
+              <option value="rum">Rum</option>
+              <option value="tequila">Tequila</option>
+              <option value="vodka">Vodka</option>
+              <option value="whiskey">Whiskey</option>
               <option value="wine">Wine</option>
             </select>
             </label>

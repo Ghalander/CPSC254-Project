@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 class Cart extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   shoppingCart(){
     var shoppingCart = [];

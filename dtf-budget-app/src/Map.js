@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 
 class Maps extends Component {
-  constructor(props) {
-    super(props);
-
-  }
 
   showMap(dest){
 
@@ -28,7 +24,7 @@ class Maps extends Component {
     uniqueCoords.push(coordinates[0]);
 
     for(var j = 1; j < arr.length; j++){
-      if(!uniqueCoords.includes(coordinates[j]) && coordinates[j] != undefined){
+      if(!uniqueCoords.includes(coordinates[j]) && coordinates[j] !== undefined){
         uniqueCoords.push(coordinates[j]);
       }
     }
@@ -47,19 +43,12 @@ class Maps extends Component {
   }
 
     render(){
-      if (this.props.loaded) {
-            return (
-              <div>Loading...</div>
-          );
-        }
-      else{
           return (
             <div>
               <div className="map"></div>
             </div>
           );
       }
-  }
 }
 
 export default Maps;

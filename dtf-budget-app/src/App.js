@@ -30,22 +30,6 @@ class App extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 }
-  //this is called as soon as the main website has loaded everything
-  componentDidMount() {
-    this.callApi()
-      // .then(res => this.setState({ response: res.express }))
-      .then(res => this.setState({ response: res.express.map((item)=>({
-          price: item.price,
-          name: item.name,
-          type: item.type,
-          description: item.description,
-          bar: item.bar,
-          lat: item.lat,
-          long: item.long,
-        }))
-      }))
-      .catch(err => console.log(err));
-  }
 
   handleBudgetValue = e => this.setState({[this.state.jumboBudget]: this.state.jumboBudget = e});
   handleMapFlag = e => this.setState({[this.state.mapFlag]: this.state.mapFlag = e});
@@ -81,7 +65,6 @@ class App extends Component {
 //when they hit the submit button it will send the info for some database search
   handleSubmit(event) {
     event.preventDefault();
-    alert('budget: ' + this.state.budget + ' name: ' + this.state.name + ' type: ' + this.state.selectTypes);
     if(this.state.draftFlag === false){
       this.typeQuery().then(res => this.setState({ types: res.express.map((item)=>({
         price: item.price,
@@ -169,12 +152,6 @@ class App extends Component {
   //===============================================
   // API CALLS =====================================
   //===============================================
-    callApi = async () => {
-     const response = await fetch('/api/cargo');
-     const body = await response.json();
-     if (response.status !== 200) throw Error(body.message);
-     return body;
-   };
 
    typeQuery = async() => {
      const response = await fetch('/api/type', {

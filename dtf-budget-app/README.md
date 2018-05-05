@@ -5,6 +5,13 @@
 - How many drinks can we get out of the night
 - Manage by drink types
 
+### The Look
+Card Draft Scene
+![intro card draft](https://raw.githubusercontent.com/Ghalander/CPSC254-Project/master/img/draft.png)
+
+Map Score Scene
+![map score](https://raw.githubusercontent.com/Ghalander/CPSC254-Project/master/img/map.png)
+
 # Node Modules
 
 Everything that is in the node modules folder are dependencies that are needed by the open source applications. So those were not touched and just used in our program.

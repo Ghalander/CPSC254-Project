@@ -5,6 +5,28 @@
 - How many drinks can we get out of the night
 - Manage by drink types
 
+# Source
+### App.js
+
+This is our main intro page and is in control of the main query calls and draft screen
+
+### Server.js
+
+This is where the server will create a locally hosted url and allow us to call the information to our card draft
+
+### Cart.js
+
+After the draft screen, this will list our item over the map
+
+### CheckForMap.js
+
+This was just a flag that will trigger and call the rest of the map when the draft screen submit is clicked
+
+### Map.js
+
+This is where we check for the locations of each drink and filter out the locations to only unique locations. Then that was sent as a url call to Google's API.
+
+# Database Fields and Info
 
 ### IDs for restaurants
 EFO - El Farolito Jr

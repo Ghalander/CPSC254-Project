@@ -5,6 +5,12 @@
 - How many drinks can we get out of the night
 - Manage by drink types
 
+# Node Modules
+
+Everything that is in the node modules folder are dependencies that are needed by the open source applications. So those were not touched and just used in our program.
+
+While not everything was used, one of the headaches of web development is that if a dependency is missing, the traceback becomes a nightmare.
+
 # Source
 ### App.js
 

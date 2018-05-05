@@ -6,8 +6,10 @@ Node Server - https://nodejs.org/en/ - MIT License
 
 SQLite3 - https://www.sqlite.org/index.html - Public Domain (Open Souce, not Open-Contribution)
 
+Immutability-Helper - https://github.com/kolodny/immutability-helper - MIT License
+
 ---
-## Dependencies you may need to install to run everything
+## Dependencies you may need to install to run everything, you can find these inside node_modules folder
 ### Bootstrap
   https://getbootstrap.com/docs/4.0/getting-started/introduction/
 

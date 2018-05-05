@@ -1,13 +1,17 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
-
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
-
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+## Open Source Applications
+React Javascript Framework - https://reactjs.org/ - MIT License
+Node Server - https://nodejs.org/en/ - MIT License
+SQLite3 - https://www.sqlite.org/index.html - Public Domain (Open Souce, not Open-Contribution)
 
 ---
 ## Dependencies you may need to install to run everything
-  - nodejs
-  - sqlite3
+  - bootstrap `npm install bootstrap`
+  - immutability-helper `npm install immutability-helper` https://github.com/kolodny/immutability-helper
+  - nodejs `node install`
+  - react `npm install react`
+  - sqlite3 `npm install sqlite3`
+
+
   I would google how to install sqlite3 on your computer since it's windows.
   Since you already have node maybe it's just `node install sqlite3`, I'm not sure though.
 
@@ -60,7 +64,7 @@ Open another instance of terminal/command prompt (you my be able to press ctrl-t
 
 ## As for what the database should be down the line...
   I don't know how deep we should get into it. I don't know if we have time for photo of the drinks either.
-  
+
   - One table will have (pk, price, name (of drink), type (of drink), barID)
     which will hold the price and name of the drink then the respective bar it came from in ID form.
   - One table will have (pk, barID, barName, barPhoto)

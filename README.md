@@ -17,37 +17,37 @@ SQLite3 - https://www.sqlite.org/index.html - Public Domain (Open Souce, not Ope
 
 ### immutability-helper
 
-  https://github.com/kolodny/immutability-helper
+https://github.com/kolodny/immutability-helper
 
-  `npm install immutability-helper`
+`npm install immutability-helper`
 
-  This was an open source library that a friendly person made to help with the immutable variables issues. Essentially immutable variables cannot be changed so someone made a handy tool to help do all the leg work of copying and remaking immutable variables
+This was an open source library that a friendly person made to help with the immutable variables issues. Essentially immutable variables cannot be changed so someone made a handy tool to help do all the leg work of copying and remaking immutable variables
 
 
 ### nodejs
 
-    https://nodejs.org/en/
+https://nodejs.org/en/
 
-    `node install`
+`node install`
 
-    This was used to control our server which ran locally
+This was used to control our server which ran locally
 
 
 ### react
 
-    https://reactjs.org/
+https://reactjs.org/
 
-    `npm install react`
+`npm install react`
 
-    This was the Framework for our javascript based website. Unfortunately since it is web development, it likes to keep everything in  `node_modules` even if some parts aren't used.
+This was the Framework for our javascript based website. Unfortunately since it is web development, it likes to keep everything in  `node_modules` even if some parts aren't used.
 
 ### sqlite3
 
-    https://www.sqlite.org/index.html
+https://www.sqlite.org/index.html
 
-    `npm install sqlite3`
+`npm install sqlite3`
 
-    We used this to implement our database.
+We used this to implement our database.
 
 ## To start client
 ```

@@ -1,7 +1,0 @@
-We will be doing the _ERN stack! Still don't know what will be the first letter yet.
-
-Express (this will be our communicator from front end to back end. typically called REST API)
-React (this will be our javascript framework for the front end!)
-Node (this will be the server that will be ran on the backend)
-
-Only thing left to do is choose the database we will be using.

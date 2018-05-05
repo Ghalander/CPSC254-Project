@@ -1,24 +1,53 @@
+
 ## Open Source Applications
 React Javascript Framework - https://reactjs.org/ - MIT License
+
 Node Server - https://nodejs.org/en/ - MIT License
+
 SQLite3 - https://www.sqlite.org/index.html - Public Domain (Open Souce, not Open-Contribution)
 
 ---
 ## Dependencies you may need to install to run everything
-  - bootstrap `npm install bootstrap`
+### Bootstrap
+  https://getbootstrap.com/docs/4.0/getting-started/introduction/
 
-  - immutability-helper `npm install immutability-helper` https://github.com/kolodny/immutability-helper
+  `npm install bootstrap`
 
-  - nodejs `node install`
+  This was used to help style our website. It uses a great grid system that makes lining things up really nice.
 
-  - react `npm install react`
+### immutability-helper
 
-  - sqlite3 `npm install sqlite3`
-  
+  https://github.com/kolodny/immutability-helper
+
+  `npm install immutability-helper`
+
+  This was an open source library that a friendly person made to help with the immutable variables issues. Essentially immutable variables cannot be changed so someone made a handy tool to help do all the leg work of copying and remaking immutable variables
 
 
-  I would google how to install sqlite3 on your computer since it's windows.
-  Since you already have node maybe it's just `node install sqlite3`, I'm not sure though.
+### nodejs
+
+    https://nodejs.org/en/
+
+    `node install`
+
+    This was used to control our server which ran locally
+
+
+### react
+
+    https://reactjs.org/
+
+    `npm install react`
+
+    This was the Framework for our javascript based website. Unfortunately since it is web development, it likes to keep everything in  `node_modules` even if some parts aren't used.
+
+### sqlite3
+
+    https://www.sqlite.org/index.html
+
+    `npm install sqlite3`
+
+    We used this to implement our database.
 
 ## To start client
 ```

@@ -179,7 +179,7 @@ class App extends Component {
                 <p className="card-text">{this.state.cardDraft[j].price}</p>
                 <p className="card-text">Located in {this.state.cardDraft[j].bar}</p>
                 <p className="card-text">{this.state.cardDraft[j].description}</p>
-                <button className="btn btn-primary" onClick={this.handleTypes.bind(this, this.state.cardDraft[j])}>Go somewhere</button>
+                <button className="btn btn-primary" onClick={this.handleTypes.bind(this, this.state.cardDraft[j])}>select</button>
               </div>
               </div>
           </div>

@@ -52,6 +52,7 @@ https://www.sqlite.org/index.html
 We used this to implement our database.
 
 ## To start client
+When you start the client, it should open your browser automatically and send you to `http://localhost:3000`
 ```
   cd dtf-budget-app
   npm start (or 'yarn start' works too)
@@ -63,6 +64,7 @@ Open another instance of terminal/command prompt (you my be able to press ctrl-t
   cd dtf-budget-app
   node server.js
 ```
+
 
 ## How to add data to the server
   `cd dtf-budget-app`

@@ -6,10 +6,15 @@ SQLite3 - https://www.sqlite.org/index.html - Public Domain (Open Souce, not Ope
 ---
 ## Dependencies you may need to install to run everything
   - bootstrap `npm install bootstrap`
+
   - immutability-helper `npm install immutability-helper` https://github.com/kolodny/immutability-helper
+
   - nodejs `node install`
+
   - react `npm install react`
+
   - sqlite3 `npm install sqlite3`
+  
 
 
   I would google how to install sqlite3 on your computer since it's windows.

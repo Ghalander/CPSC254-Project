@@ -6,7 +6,7 @@ class Maps extends Component {
   showMap(dest){
 
     $('.map').html(
-      '<iframe width="600" height="450" frameborder="0" styles="border:0" src="https://www.google.com/maps/embed/v1/directions?<privatekey>origin=E+Commonwealth+Ave+Harbor+Blvd+Fullerton+CA+92832'+
+      '<iframe width="600" height="450" frameborder="0" styles="border:0" src="https://www.google.com/maps/embed/v1/directions?key=" + <GoogleMapApi PrivateKey> + "&origin=E+Commonwealth+Ave+Harbor+Blvd+Fullerton+CA+92832'+
         dest
       +'&mode=walking"></iframe>'
     );
